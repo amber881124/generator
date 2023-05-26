@@ -61,7 +61,7 @@ print(f'共有 {count} 筆留言,平均長度為 {leng / count} 個字')
 
 count = 0
 leng = 0
-for i in data:
+for i in (line.strip() for line in open('reviews.txt')):
     leng += len(i)
     count += 1
 print(f'共有 {count} 筆留言,平均長度為 {leng / count} 個字')
