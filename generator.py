@@ -1,20 +1,20 @@
 from memory_profiler import memory_usage # 計算記憶體用量
 import time # 計算程式耗時
 
-# # 普通讀檔案
-# def readfile():
-#     data = []
-#     with open('reviews.txt', 'r') as f:
-#         for line in f:
-#             data.append(line.strip())
-#     return data
+# 普通讀檔案
+def readfile():
+    data = []
+    with open('reviews.txt', 'r') as f:
+        for line in f:
+            data.append(line.strip())
+    return data
 
-# # 用generator
-# def readfile_gen():
-#     with open('reviews.txt', 'r') as f:
-#         for line in f:
-#             yield line
-#     return line
+# 用generator
+def readfile_gen():
+    with open('reviews.txt', 'r') as f:
+        for line in f:
+            yield line
+    return line
 
 
 # data = readfile()
@@ -30,7 +30,7 @@ import time # 計算程式耗時
 print(f'初始記憶體用量為: {memory_usage()} MB')
 start = time.time()
 # list comprehension (清單快寫法)
-data = [line.strip() for line in open('reviews.txt')]
+data = readfile()
 count = 0
 leng = 0
 for i in data:
@@ -51,7 +51,7 @@ print(f'記憶體用量為: {memory_usage()} MB')
 print(f'初始記憶體用量為: {memory_usage()} MB')
 start = time.time()
 # generator expression (generator快寫法)
-data = (line.strip() for line in open('reviews.txt'))
+data = readfile_gen()
 count = 0
 leng = 0
 for i in data:
@@ -61,7 +61,7 @@ print(f'共有 {count} 筆留言,平均長度為 {leng / count} 個字')
 
 count = 0
 leng = 0
-for i in (line.strip() for line in open('reviews.txt')):
+for i in readfile_gen():
     leng += len(i)
     count += 1
 print(f'共有 {count} 筆留言,平均長度為 {leng / count} 個字')
