@@ -58,6 +58,15 @@ for i in data:
     leng += len(i)
     count += 1
 print(f'共有 {count} 筆留言,平均長度為 {leng / count} 個字')
+
+count = 0
+leng = 0
+for i in data:
+    leng += len(i)
+    count += 1
+print(f'共有 {count} 筆留言,平均長度為 {leng / count} 個字')
+# ZeroDivisionError: division by zero
+
 end = time.time()
 print(f'執行總耗時 {end - start} 秒')
 print(f'記憶體用量為: {memory_usage()} MB')
